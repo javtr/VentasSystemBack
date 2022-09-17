@@ -22,8 +22,4 @@ public class ClienteController {
         return "cliente agregado";
 
     }
-
-
-
-
 }
