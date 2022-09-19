@@ -1,6 +1,7 @@
 package com.javtr.ventasSystem.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -16,9 +17,16 @@ public class Producto {
     private Proveedor proveedor;
 
 
+    @ManyToMany
+    @JoinTable(name = "compra", joinColumns = @JoinColumn(name = "id_producto"),
+            inverseJoinColumns = @JoinColumn(name = "id_cliente")
+    )
+    public Set <Cliente> clientes;
+
+
+
     public Producto() {
     }
-
 
     public String getCodigo() {
         return codigo;
@@ -52,6 +60,15 @@ public class Producto {
         this.proveedor = proveedor;
     }
 
+    public Set<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(Set<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+
     @Override
     public String toString() {
         return "Producto{" +
@@ -59,6 +76,7 @@ public class Producto {
                 ", nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 ", proveedor=" + proveedor +
+                ", clientes=" + clientes +
                 '}';
     }
 }

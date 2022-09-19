@@ -7,6 +7,9 @@ import com.javtr.ventasSystem.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.Set;
+
 @Service
 public class ProductoService {
     @Autowired
