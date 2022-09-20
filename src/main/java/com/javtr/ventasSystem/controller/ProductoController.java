@@ -43,7 +43,6 @@ public class ProductoController {
     }
 
 
-
     @PutMapping("/{productoId}/compra/{clienteId}")
     Producto addStudentToSubject(
             @PathVariable String productoId,
@@ -53,6 +52,14 @@ public class ProductoController {
         Cliente cliente = clienteRepository.findById(clienteId).get();
         producto.clientes.add(cliente);
         return productoRepository.save(producto);
+    }
+
+    @GetMapping("/{productoId}/clientes")
+    Set<Cliente> getSetClientes(
+            @PathVariable String productoId
+    ){
+        Producto producto = productoRepository.findById(productoId).get();
+        return producto.getClientes();
     }
 
 

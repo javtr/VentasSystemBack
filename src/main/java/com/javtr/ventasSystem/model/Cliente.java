@@ -1,6 +1,11 @@
 package com.javtr.ventasSystem.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.security.auth.Subject;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Cliente {
@@ -13,6 +18,10 @@ public class Cliente {
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private String fecha;
     private String telefono;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "clientes")
+    private Set<Producto> productos = new HashSet<>();
 
 
     public Cliente() {
@@ -56,6 +65,14 @@ public class Cliente {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public Set<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Set<Producto> productos) {
+        this.productos = productos;
     }
 
     @Override
